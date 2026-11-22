@@ -1,0 +1,16 @@
+{
+  "name": "pipiti",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "PiPiTi — AI Presentation Maker, an Anna App for the TalentSec Coding Challenge",
+  "scripts": {
+    "validate": "anna-app validate",
+    "dev": "anna-app dev --slug pipiti",
+    "test": "node --test test/*.test.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  }
+}

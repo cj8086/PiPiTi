@@ -1,0 +1,28 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Anna / local credentials — never commit
+.home/
+.anna/
+.config/anna/
+.anna-app/
+dev.key
+credentials.json
+fixtures/*.jsonl
+
+# IDE / tooling artifacts
+.trae-html-share-packages/
+.screenshots/
+.vscode/
+.idea/
+
+# Environment / secrets
+.env
+.env.*
+
+# Test coverage
+coverage/
+
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PiPiTi — AI Presentation Maker</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <!-- Vendored PptxGenJS UMD: must load before the module below; CSP allows 'self' only. -->
+  <script src="./vendor/pptxgen.bundle.js"></script>
+  <script src="./app.js" type="module"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand" aria-label="PiPiTi — Your ideas, beautifully presented.">
+      <span class="mark" aria-hidden="true">Pi</span>
+      <div class="brand-copy">
+        <h1>PiPiTi</h1>
+        <p>Your ideas, beautifully presented.</p>
+      </div>
+    </div>
+    <div id="presentationActions" class="topbar-actions hidden">
+      <button id="newBtn" class="button secondary" type="button">New Presentation</button>
+      <button id="exportBtn" class="button primary" type="button" disabled>Export PPTX</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <!-- Creation view: topic input, slide count, generate action. -->
+    <section id="creationView" class="view creation-view" aria-labelledby="creationTitle">
+      <div class="creation-intro">
+        <p class="eyebrow">AI PRESENTATION MAKER</p>
+        <h2 id="creationTitle">Ideas in.<br />A clear story out.</h2>
+        <p class="intro-copy">
+          Turn a topic or rough notes into a structured, editable presentation.
+          You bring the thinking. PiPiTi shapes the story.
+        </p>
+      </div>
+
+      <form id="generateForm" class="composer" novalidate>
+        <label class="input-label" for="topic">Topic or raw material</label>
+        <textarea id="topic" rows="7" maxlength="12000"
+          placeholder="What should your audience understand, decide, or do?" aria-describedby="topicHint"></textarea>
+
+        <div class="composer-meta">
+          <p id="topicHint" class="hint">Add your audience and key points, or paste your notes.</p>
+          <label class="slide-count" for="slideCount">
+            <span>Slides</span>
+            <input id="slideCount" type="number" min="2" max="8" value="6" />
+          </label>
+        </div>
+
+        <div class="generate-row">
+          <p id="status" class="status" role="status" aria-live="polite">Connecting to Anna…</p>
+          <button id="generateBtn" class="button primary generate-button" type="submit" disabled>
+            Generate Presentation
+          </button>
+        </div>
+        <pre id="log" class="log hidden" aria-live="polite"></pre>
+      </form>
+
+      <footer class="creation-foot">Built for the TalentSec Coding Challenge</footer>
+    </section>
+
+    <!-- Presentation view: thumbnail sidebar, slide preview, PPTX export. -->
+    <section id="presentationView" class="view presentation-view hidden" aria-label="Presentation preview">
+      <aside class="slide-sidebar">
+        <div class="deck-heading">
+          <p class="eyebrow">PRESENTATION</p>
+          <h2 id="deckTitle"></h2>
+          <p id="deckMeta" class="muted"></p>
+        </div>
+        <div id="thumbnails" class="thumbnails" role="list" aria-label="Slides"></div>
+        <details class="activity">
+          <summary>Generation details</summary>
+          <pre id="activityLog"></pre>
+        </details>
+      </aside>
+
+      <div class="preview-workspace">
+        <div class="preview-toolbar">
+          <span id="layoutLabel" class="layout-label">Cover</span>
+          <div class="nav">
+            <button id="prevBtn" class="button icon" type="button" aria-label="Previous slide">←</button>
+            <span id="pageLabel" class="pager">1 / 1</span>
+            <button id="nextBtn" class="button icon" type="button" aria-label="Next slide">→</button>
+          </div>
+        </div>
+
+        <div id="canvas" class="canvas" aria-live="polite"></div>
+
+        <div class="export-footer">
+          <p id="exportStatus" class="status" role="status" aria-live="polite">
+            Editable text and shapes · 16:9 PowerPoint
+          </p>
+          <a id="downloadLink" class="download hidden" target="_blank" rel="noopener">Download PPTX</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
